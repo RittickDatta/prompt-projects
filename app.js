@@ -4,7 +4,7 @@
   const REPOSITORY_TREE_URL = "https://api.github.com/repos/RittickDatta/prompt-projects/git/trees/main?recursive=1";
   const PROJECTS_KEY = "prompt-projects.view.v1";
   const THEME_KEY = "prompt-projects.theme.v1";
-  const PALETTE_KEY = "prompt-projects.palette.v1";
+  const PALETTE_KEY = "prompt-projects.palette.v2";
   const knownProjects = {
     "todo-app": {
       name: "Daymark",
@@ -242,7 +242,7 @@
       return null;
     }
   })();
-  const initialPalette = storedPalette === "signal" ? "signal" : "sunshine";
+  const initialPalette = storedPalette === "sunshine" ? "sunshine" : "signal";
   document.documentElement.dataset.palette = initialPalette;
   function updatePaletteToggleLabel(palette) {
     const label = `Switch to ${palette === "signal" ? "sunshine" : "signal"} palette`;
