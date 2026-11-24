@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const rootDirectory = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const readmePath = path.join(rootDirectory, "README.md");
+const pagesBaseUrl = "https://rittickdatta.github.io/prompt-projects";
 const startMarker = "<!-- PROJECTS:START -->";
 const endMarker = "<!-- PROJECTS:END -->";
 
@@ -72,8 +73,8 @@ function projectRows() {
   }
 
   return projects.map((project) => {
-    const folderUrl = encodeURIComponent(project.folder);
-    return `| ${tableCell(project.title)} | ${tableCell(project.description)} | [Open app](./${folderUrl}/index.html) |`;
+    const projectUrl = `${pagesBaseUrl}/${encodeURIComponent(project.folder)}/`;
+    return `| ${tableCell(project.title)} | ${tableCell(project.description)} | <a href="${projectUrl}" target="_blank" rel="noopener noreferrer">Open app</a> |`;
   }).join("\n");
 }
 
