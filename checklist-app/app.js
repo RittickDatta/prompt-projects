@@ -1,6 +1,11 @@
 (() => {
   "use strict";
 
+  if (new URLSearchParams(window.location.search).has("preview")) {
+    document.documentElement.dataset.preview = "true";
+    return;
+  }
+
   const CHECKLISTS_KEY = "goodlist.checklists.v1";
   const THEME_KEY = "goodlist.theme.v1";
   const ABANDONED_AFTER_DAYS = 30;

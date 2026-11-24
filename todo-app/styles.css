@@ -52,6 +52,10 @@
   --shadow-dialog: 0 24px 70px rgb(0 0 0 / 50%);
 }
 
+html[data-preview] { height: 100%; overflow: hidden; scrollbar-width: none; }
+html[data-preview]::-webkit-scrollbar { display: none; }
+html[data-preview] body { height: 100%; overflow: hidden; }
+
 * { box-sizing: border-box; }
 
 body {

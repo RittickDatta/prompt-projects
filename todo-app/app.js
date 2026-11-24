@@ -1,6 +1,11 @@
 (() => {
   "use strict";
 
+  if (new URLSearchParams(window.location.search).has("preview")) {
+    document.documentElement.dataset.preview = "true";
+    return;
+  }
+
   const TASKS_KEY = "daymark.tasks.v1";
   const THEME_KEY = "daymark.theme.v1";
   const statuses = {
