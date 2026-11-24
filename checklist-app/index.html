@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f6f2">
+    <meta name="description" content="A friendly place to make a plan, check things off, and celebrate the little wins.">
+    <title>Goodlist — little steps, lovely progress</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Goodlist home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="m6 12.5 4 4 8-9" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 2.8a9.2 9.2 0 1 0 9.2 9.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span>
+          <span>goodlist<span class="brand-period">.</span></span>
+        </a>
+        <div class="topbar-actions">
+          <span class="today-label" id="today-label"></span>
+          <button class="icon-button theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch color theme">
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.2 15.1A8.6 8.6 0 0 1 8.9 3.8 8.7 8.7 0 1 0 20.2 15Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="button button-primary top-add" id="add-checklist-button" type="button">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14m-7-7h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span>New checklist</span>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="eyebrow-dot"></span> A LITTLE SPACE FOR YOUR NEXT STEPS</p>
+            <h1 id="hero-title">Little steps.<br><span>Lovely progress.</span></h1>
+            <p class="hero-description">Make a checklist for anything on your mind. Add your steps, check them off as you go, and use <strong>To do</strong> or <strong>Done</strong> to find just what you need. Notes are here for the little reminders along the way.</p>
+            <button class="button button-primary hero-add" id="hero-add-button" type="button">Create a checklist <span aria-hidden="true">→</span></button>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <span class="art-sparkle sparkle-one">✳</span>
+            <span class="art-sparkle sparkle-two">✦</span>
+            <div class="art-paper">
+              <span class="art-caption">TODAY, AT YOUR PACE</span>
+              <div class="art-line art-line-done"><span>✓</span><i></i></div>
+              <div class="art-line art-line-done"><span>✓</span><i></i></div>
+              <div class="art-line"><span></span><i></i></div>
+              <div class="art-line"><span></span><i></i></div>
+              <span class="art-note">You're doing great!</span>
+            </div>
+            <span class="art-leaf leaf-one"></span><span class="art-leaf leaf-two"></span>
+          </div>
+        </section>
+
+        <section class="dashboard" id="dashboard" aria-labelledby="lists-title">
+          <div class="storage-notice" id="storage-notice" role="alert" hidden></div>
+          <div class="dashboard-heading">
+            <div>
+              <p class="eyebrow">YOUR LITTLE PLANS</p>
+              <h2 id="lists-title">All checklists <span class="count-pill" id="list-count">0</span></h2>
+            </div>
+            <p class="gentle-prompt">Every checked box is a win. 🌱</p>
+          </div>
+          <div class="bucket-list">
+            <section class="bucket bucket-not-started" aria-labelledby="not-started-title">
+              <div class="bucket-heading">
+                <span class="bucket-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v4l2.5 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+                <h3 id="not-started-title">Ready when you are</h3>
+                <span class="bucket-count" id="count-not-started">0</span>
+              </div>
+              <p class="bucket-hint">Fresh lists waiting for their first little step.</p>
+              <div class="checklist-grid" id="bucket-not-started"></div>
+              <p class="bucket-empty" id="empty-not-started" hidden>No rush. Your next plan can start whenever you're ready.</p>
+            </section>
+            <section class="bucket bucket-in-progress" aria-labelledby="in-progress-title">
+              <div class="bucket-heading">
+                <span class="bucket-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 13h4l3-8 4 14 3-6h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <h3 id="in-progress-title">In the works</h3>
+                <span class="bucket-count" id="count-in-progress">0</span>
+              </div>
+              <p class="bucket-hint">Look at you, making things happen.</p>
+              <div class="checklist-grid" id="bucket-in-progress"></div>
+              <p class="bucket-empty" id="empty-in-progress" hidden>Your first checked item will show up here.</p>
+            </section>
+            <section class="bucket bucket-completed" aria-labelledby="completed-title">
+              <div class="bucket-heading">
+                <span class="bucket-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <h3 id="completed-title">All done, all lovely</h3>
+                <span class="bucket-count" id="count-completed">0</span>
+              </div>
+              <p class="bucket-hint">Take a moment. You did that!</p>
+              <div class="checklist-grid" id="bucket-completed"></div>
+              <p class="bucket-empty" id="empty-completed" hidden>Your wins will collect here, one check at a time.</p>
+            </section>
+            <section class="bucket bucket-abandoned" aria-labelledby="abandoned-title">
+              <div class="bucket-heading">
+                <span class="bucket-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.64 5.64l2.12 2.12m8.48 8.48 2.12 2.12m0-12.72-2.12 2.12m-8.48 8.48-2.12 2.12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/></svg></span>
+                <h3 id="abandoned-title">Whenever you're ready</h3>
+                <span class="bucket-count" id="count-abandoned">0</span>
+              </div>
+              <p class="bucket-hint">Untouched for a while? You can pick these up anytime.</p>
+              <div class="checklist-grid" id="bucket-abandoned"></div>
+              <p class="bucket-empty" id="empty-abandoned" hidden>Nothing left behind. You're right where you need to be.</p>
+            </section>
+          </div>
+          <div class="empty-dashboard" id="empty-dashboard" hidden>
+            <span class="empty-illustration" aria-hidden="true"><svg viewBox="0 0 80 80" fill="none"><rect x="14" y="12" width="52" height="58" rx="12" fill="currentColor" opacity=".1"/><path d="M29 30h23M29 41h23M29 52h14" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="m48 55 4 4 9-11" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3>Your plans can start small.</h3>
+            <p>Create a checklist and take the first step whenever it feels right.</p>
+            <button class="button button-primary" id="empty-add-button" type="button">Make your first checklist <span aria-hidden="true">→</span></button>
+          </div>
+        </section>
+
+        <section class="checklist-view" id="checklist-view" aria-labelledby="checklist-title" hidden>
+          <button class="back-link" id="back-button" type="button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6M9 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> All checklists</button>
+          <div class="detail-card">
+            <div class="detail-heading">
+              <div class="detail-heading-copy">
+                <p class="eyebrow"><span class="eyebrow-dot"></span> YOUR CHECKLIST</p>
+                <h2 id="checklist-title"></h2>
+                <p class="detail-description" id="checklist-description"></p>
+              </div>
+              <button class="icon-button delete-list-button" id="delete-checklist-button" type="button" aria-label="Delete this checklist" title="Delete checklist">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16m-10 4v6m4-6v6M6 7l1 14h10l1-14M9 7V4h6v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="progress-area">
+              <div class="progress-copy"><span id="progress-label">0 of 0 steps checked</span><span id="progress-percent">0%</span></div>
+              <div class="progress-track" role="progressbar" id="progress-bar" aria-label="Checklist progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progress-fill"></span></div>
+            </div>
+            <div class="filter-row">
+              <span class="filter-caption">Show me</span>
+              <div class="filter-switch" role="group" aria-label="Filter checklist items">
+                <button class="filter-button is-active" data-filter="all" type="button" aria-pressed="true">Everything <span id="filter-all-count">0</span></button>
+                <button class="filter-button" data-filter="unchecked" type="button" aria-pressed="false">To do <span id="filter-unchecked-count">0</span></button>
+                <button class="filter-button" data-filter="checked" type="button" aria-pressed="false">Done <span id="filter-checked-count">0</span></button>
+              </div>
+            </div>
+            <div class="completion-message" id="completion-message" role="status" aria-live="polite" hidden>
+              <span class="completion-icon" aria-hidden="true">✦</span>
+              <div><h3>Look at you — you did it!</h3><p>This checklist is complete. Take a breath and enjoy that feeling.</p></div>
+            </div>
+            <p class="no-filter-results" id="no-filter-results" hidden></p>
+            <div class="item-list" id="item-list"></div>
+            <form class="add-item-form" id="add-item-form">
+              <label class="sr-only" for="new-item-title">Add a checklist item</label>
+              <input id="new-item-title" name="title" type="text" maxlength="160" placeholder="Add one more little step..." required>
+              <button class="button button-primary" type="submit"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14m-7-7h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Add step</span></button>
+            </form>
+            <p class="detail-footnote"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V7a4 4 0 1 1 8 0v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg> Your checklists stay private, right here on this device.</p>
+          </div>
+        </section>
+      </main>
+      <footer class="footer"><span>Little by little is still lovely progress.</span><span>YOUR CHECKLISTS STAY ON THIS DEVICE</span></footer>
+    </div>
+
+    <dialog class="checklist-dialog" id="checklist-dialog" aria-labelledby="dialog-title">
+      <form class="checklist-form" id="checklist-form">
+        <div class="dialog-heading">
+          <div><p class="eyebrow">MAKE A LITTLE PLAN</p><h2 id="dialog-title">What would you like to do?</h2></div>
+          <button class="icon-button dialog-close" id="dialog-close" type="button" aria-label="Close dialog">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+        <label class="field-label" for="checklist-name">Give it a name <span class="required-mark">*</span></label>
+        <input class="text-field" id="checklist-name" name="name" type="text" maxlength="90" placeholder="A name that makes you smile" required>
+        <label class="field-label" for="checklist-details">A little context <span class="optional-mark">OPTIONAL</span></label>
+        <input class="text-field" id="checklist-details" name="description" type="text" maxlength="200" placeholder="What's this list for?">
+        <label class="field-label" for="checklist-items">Add your first steps <span class="required-mark">*</span></label>
+        <textarea class="text-field item-seed-field" id="checklist-items" name="items" rows="5" placeholder="One step per line&#10;Gather what I need&#10;Make a little progress" required></textarea>
+        <p class="field-hint">One item per line. You can always add more later.</p>
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+        <div class="dialog-actions">
+          <button class="button button-quiet" id="cancel-button" type="button">Maybe later</button>
+          <button class="button button-primary" type="submit">Create my checklist <span aria-hidden="true">→</span></button>
+        </div>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
