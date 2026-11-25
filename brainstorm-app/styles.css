@@ -170,20 +170,30 @@ fieldset p { margin: 8px 0; }
 .error { color: #9d213b; margin: 0; }
 .storage-error { padding: 12px 20px; background: #ffebee; }
 .print-sheet { display: none; }
-html[data-preview] .workspace { grid-template-columns: 170px minmax(0, 1fr); }
-html[data-preview] .sidebar { padding: 18px 12px; }
-html[data-preview] .board-header, html[data-preview] .legend, html[data-preview] .canvas { padding-inline: 18px; }
 @media (max-width: 760px) {
-  html:not([data-preview]) .workspace { grid-template-columns: 1fr; }
-  html:not([data-preview]) .sidebar { gap: 12px; padding: 15px 20px; }
-  html:not([data-preview]) #board-list { display: flex; flex-wrap: wrap; }
-  html:not([data-preview]) .board-header { align-items: flex-start; flex-direction: column; }
-  html:not([data-preview]) .columns,
-  html:not([data-preview]) .column:only-child .notes {
+  .workspace { grid-template-columns: 1fr; }
+  .sidebar { gap: 12px; padding: 15px 20px; }
+  #board-list { display: flex; flex-wrap: wrap; }
+  .board-header { align-items: flex-start; flex-direction: column; }
+  .columns,
+  .column:only-child .notes {
     grid-template-columns: minmax(0, 1fr);
     min-width: 0;
   }
 }
+html[data-preview], html[data-preview] body { height: 100%; overflow: hidden; }
+html[data-preview] .workspace { grid-template-columns: minmax(0, 1fr); }
+html[data-preview] :is(.columns, .column:only-child .notes) {
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+}
+html[data-preview] .sidebar { padding: 8px 14px; }
+html[data-preview] .brand { font-size: 1rem; }
+html[data-preview] .brand-mark { width: 26px; height: 26px; }
+html[data-preview] :is(.sidebar nav, .new-board, .storage-caption, .board-type, .board-description, .board-actions, .legend) { display: none; }
+html[data-preview] .board-header { padding: 12px 14px; }
+html[data-preview] .board-header h1 { font-size: 1.375rem; }
+html[data-preview] .canvas { overflow: hidden; padding: 10px 14px; }
 @media print {
   @page { margin: 15mm; }
   body { background: white; color: #171d30; }

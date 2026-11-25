@@ -222,7 +222,7 @@ h2 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -.7px; }
 .preview-browser-bar span:nth-child(3) { background: #88bd8e; }
 .preview-browser-bar i { margin-left: auto; color: var(--muted); font-size: 7px; font-style: normal; }
 .project-preview iframe, .project-preview-image { width: 100%; height: 360px; display: block; margin-top: 22px; border: 0; background: var(--page); object-fit: cover; object-position: top; pointer-events: none; }
-.project-preview iframe { overflow: hidden; }
+.project-preview iframe { width: min(100%, 420px); margin-inline: auto; overflow: hidden; }
 .project-preview-image { height: 100%; margin-top: 0; }
 .preview-placeholder { position: relative; height: 100%; display: grid; place-items: center; padding: 28px 20px 14px; }
 .placeholder-sheet { width: min(230px, 85%); padding: 15px 15px 12px; transform: rotate(-2deg); border: 1px solid var(--line); border-radius: 11px; background: var(--surface); box-shadow: 0 12px 28px rgb(38 57 90 / 12%); }
