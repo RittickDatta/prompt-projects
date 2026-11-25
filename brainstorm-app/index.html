@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A digital post-it board for planning projects, mapping your week, and sharing ideas as a PDF.">
+  <title>Brainstorm — digital post-it boards</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="workspace">
+    <aside class="sidebar">
+      <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">✳</span>Brainstorm</a>
+      <button class="new-board" id="new-board" type="button">＋ New board</button>
+      <nav aria-label="Your boards">
+        <h2>Your boards</h2>
+        <div id="board-list"></div>
+      </nav>
+      <p class="storage-caption">Boards are saved on this device.</p>
+    </aside>
+    <main>
+      <header class="board-header" id="board-header">
+        <div>
+          <p class="board-type" id="board-type"></p>
+          <h1 id="board-title"></h1>
+          <p id="board-description" class="board-description"></p>
+        </div>
+        <div class="board-actions">
+          <button type="button" class="button font-toggle" id="handwriting-toggle" aria-pressed="true">Handwriting</button>
+          <button type="button" class="button" id="export">Export PDF</button>
+          <button type="button" class="button primary" id="new-note">＋ Add note</button>
+        </div>
+      </header>
+      <div class="legend" id="legend" aria-label="Board color legend"></div>
+      <p id="storage-error" class="error storage-error" role="alert" hidden></p>
+      <div class="canvas" id="canvas">
+        <div class="columns" id="columns"></div>
+      </div>
+      <section class="board-empty" id="board-empty" hidden>
+        <h1>No boards yet</h1>
+        <p>Create a board to start adding notes.</p>
+      </section>
+    </main>
+  </div>
+  <dialog id="board-dialog" aria-labelledby="board-dialog-title">
+    <form id="board-form">
+      <div class="dialog-header">
+        <h2 id="board-dialog-title">New board</h2>
+        <button type="button" class="close" data-close aria-label="Close">×</button>
+      </div>
+      <label>Board name <input name="title" maxlength="80" required placeholder="e.g. Launch planning"></label>
+      <label>Description <span class="optional">(optional)</span><input name="description" maxlength="180" placeholder="What is this board for?"></label>
+      <label>Layout
+        <select name="layout">
+          <option value="open">Open board</option>
+          <option value="sections" selected>Custom sections</option>
+          <option value="week">Week board</option>
+        </select>
+      </label>
+      <label id="section-fields">Section names <span class="optional">(one per line)</span>
+        <textarea name="sections" rows="3" placeholder="Ideas&#10;In progress&#10;Ready"></textarea>
+      </label>
+      <label class="checkbox" id="weekend-field" hidden><input type="checkbox" name="weekend"> Include Saturday and Sunday</label>
+      <fieldset>
+        <legend>What should note colors mean?</legend>
+        <select name="colorMode" aria-label="Color scheme">
+          <option value="priority">Urgency and importance</option>
+          <option value="people">Team members</option>
+          <option value="custom">Custom labels</option>
+          <option value="none">No color coding</option>
+        </select>
+        <p id="color-help" class="optional"></p>
+        <div id="color-fields" class="color-fields"></div>
+      </fieldset>
+      <p class="error" id="board-error" role="alert" hidden></p>
+      <footer class="dialog-actions">
+        <button type="button" class="button" data-close>Cancel</button>
+        <button class="button primary">Create board</button>
+      </footer>
+    </form>
+  </dialog>
+  <dialog id="note-dialog" aria-labelledby="note-dialog-title">
+    <form id="note-form">
+      <div class="dialog-header">
+        <h2 id="note-dialog-title">Add note</h2>
+        <button type="button" class="close" data-close aria-label="Close">×</button>
+      </div>
+      <label>Note title <input name="title" maxlength="100" required placeholder="Give the idea a short title"></label>
+      <label>Details <span class="optional">(optional)</span><textarea name="body" rows="4" maxlength="2000" placeholder="Add context or next steps"></textarea></label>
+      <label id="note-section-field">Section <select name="section"></select></label>
+      <label id="note-color-field">Note color <select name="color"></select></label>
+      <footer class="dialog-actions">
+        <button type="button" class="button danger" id="delete-note" hidden>Delete note</button>
+        <button type="button" class="button" data-close>Cancel</button>
+        <button class="button primary">Save note</button>
+      </footer>
+    </form>
+  </dialog>
+  <section class="print-sheet" id="print-sheet" aria-hidden="true"></section>
+</body>
+</html>

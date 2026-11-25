@@ -6,6 +6,12 @@
   const THEME_KEY = "prompt-projects.theme.v1";
   const PALETTE_KEY = "prompt-projects.palette.v2";
   const knownProjects = {
+    "brainstorm-app": {
+      name: "Brainstorm",
+      category: "Productivity",
+      summary: "Plan projects or map your week on a color-coded post-it board.",
+      benefit: "Group ideas into sections and share the finished board as a PDF."
+    },
     "todo-app": {
       name: "Daymark",
       category: "Productivity",

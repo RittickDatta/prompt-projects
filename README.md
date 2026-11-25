@@ -9,6 +9,7 @@ This table is generated from the project folders in the repository root. Each fo
 <!-- PROJECTS:START -->
 | Project | What it does | Visit |
 | --- | --- | --- |
+| Brainstorm | A digital post-it board for planning projects, mapping your week, and sharing ideas as a PDF. | <a href="https://rittickdatta.github.io/prompt-projects/brainstorm-app/" target="_blank" rel="noopener noreferrer">Open app</a> |
 | Daymark | A calm, thoughtful space to organize your tasks. | <a href="https://rittickdatta.github.io/prompt-projects/todo-app/" target="_blank" rel="noopener noreferrer">Open app</a> |
 | Goodlist | A friendly place to make a plan, check things off, and celebrate the little wins. | <a href="https://rittickdatta.github.io/prompt-projects/checklist-app/" target="_blank" rel="noopener noreferrer">Open app</a> |
 <!-- PROJECTS:END -->
